@@ -1,0 +1,113 @@
+{
+  "threads": 8,
+  "coin": "prkl",
+  "name": "main",
+  "pplns": 9000,
+  "proxy": {
+    "enabled": true,
+    "listen": "0.0.0.0:8889",
+    "limitHeadersSize": 1024,
+    "limitBodySize": 256,
+    "behindReverseProxy": false,
+    "stratum": {
+      "enabled": true,
+      "listen": "0.0.0.0:8009",
+      "timeout": "120s",
+      "maxConn": 8192
+    },
+
+    "blockRefreshInterval": "120ms",
+    "stateUpdateInterval": "3s",
+    "difficulty": 9000000000,
+    "stratumHostname": "perkle-pool.esprezzo.io",
+    "healthCheck": true,
+    "maxFails": 100,
+    "hashrateExpiration": "3h",
+    "policy": {
+      "workers": 8,
+      "resetInterval": "60m",
+      "refreshInterval": "1m",
+      "banning": {
+        "enabled": false,
+        "ipset": "blacklist",
+        "timeout": 1800,
+        "invalidPercent": 30,
+        "checkThreshold": 30,
+        "malformedLimit": 5
+      },
+      "limits": {
+        "enabled": false,
+        "limit": 30,
+        "grace": "5m",
+        "limitJump": 10
+      }
+    }
+  },
+
+  "api": {
+    "enabled": false,
+    "listen": "0.0.0.0:8080",
+    "statsCollectInterval": "5s",
+    "purgeInterval": "10m",
+    "hashrateWindow": "30m",
+    "hashrateLargeWindow": "3h",
+    "luckWindow": [64, 128, 256],
+    "payments": 50,
+    "blocks": 50,
+    "poolCharts":"0 */20 * * * *",
+    "poolChartsNum":74,
+    "minerCharts":"0 */20 * * * *",
+    "minerChartsNum":74,
+    "purgeOnly": false
+  },
+
+  "upstreamCheckInterval": "5s",
+
+  "upstream": [
+    {
+      "name": "main",
+      "url": "http://40.121.105.44:8501",
+      "timeout": "10s"
+    },
+    {
+      "name": "backup",
+      "url": "http://127.0.0.2:8501",
+      "timeout": "10s"
+    }
+  ],
+
+  "redis": {
+    "endpoint": "127.0.0.1:6379",
+    "poolSize": 15,
+    "database": 1,
+    "password": ""
+  },
+
+  "unlocker": {
+    "enabled": false,
+    "poolFee": 0.5,
+    "poolFeeAddress": "0x0f31986d7a0d4f160acd97583e3c3b591dcb5dde",
+    "donate": true,
+    "depth": 120,
+    "immatureDepth": 20,
+    "keepTxFees": false,
+    "interval": "10m",
+    "daemon": "http://127.0.0.1:8501",
+    "timeout": "10s"
+  },
+
+  "payouts": {
+    "enabled": false,
+    "requirePeers": 5,
+    "interval": "3h",
+    "daemon": "http://127.0.0.1:8545",
+    "timeout": "10s",
+    "address": "0x",
+    "autoGas": true,
+    "gas": "21000",
+    "gasPrice": "50000000000",
+    "threshold": 1000000000,
+    "bgsave": true,
+    "concurrentTx": 5
+  }
+}
