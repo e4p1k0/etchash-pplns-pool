@@ -1,6 +1,6 @@
 {
-  "threads": 2,
-  "coin": "prkl",
+  "threads": 1,
+  "coin": "etc",
   "name": "main",
   "pplns": 9000,
   "proxy": {
@@ -53,9 +53,9 @@
     "luckWindow": [64, 128, 256],
     "payments": 50,
     "blocks": 50,
-    "poolCharts":"0 */20 * * * *",
+    "poolCharts":"*/20 * * * *",
     "poolChartsNum":74,
-    "minerCharts":"0 */20 * * * *",
+    "minerCharts":"*/20 * * * *",
     "minerChartsNum":74,
     "purgeOnly": false
   },
@@ -65,12 +65,12 @@
   "upstream": [
     {
       "name": "main",
-      "url": "http://40.121.105.44:8501",
+      "url": "http://127.0.0.1:8545",
       "timeout": "10s"
     },
     {
       "name": "backup",
-      "url": "http://127.0.0.1:8501",
+      "url": "http://127.0.0.2:8546",
       "timeout": "10s"
     }
   ],
@@ -78,21 +78,21 @@
   "redis": {
     "endpoint": "127.0.0.1:6379",
     "poolSize": 10,
-    "database": 1,
+    "database": 0,
     "password": ""
   },
 
   "unlocker": {
     "enabled": true,
-    "poolFee": 0.5,
-    "poolFeeAddress": "0x0f31986d7a0d4f160acd97583e3c3b591dcb5dde",
+    "poolFee": 1.0,
+    "poolFeeAddress": "0x841Dc834eC4c8925b37d4eFaDCCeFca25582BD8a",
     "donate": true,
     "depth": 120,
     "immatureDepth": 20,
     "keepTxFees": false,
     "interval": "10m",
-    "daemon": "http://127.0.0.1:8501",
-    "timeout": "120s"
+    "daemon": "http://127.0.0.1:8545",
+    "timeout": "10s"
   },
 
   "payouts": {
@@ -101,12 +101,12 @@
     "interval": "3h",
     "daemon": "http://127.0.0.1:8545",
     "timeout": "10s",
-    "address": "0x",
+    "address": "0xa0102b3390ad022160d0a37e87191c76483ef669",
     "autoGas": true,
     "gas": "21000",
     "gasPrice": "50000000000",
     "threshold": 1000000000,
-    "bgsave": false,
+    "bgsave": true,
     "concurrentTx": 5
   }
 }
