@@ -72,10 +72,21 @@ export default Ember.Controller.extend({
                     legend: {
                         enabled: false
                     },
-                    tooltip: {
-                        formatter: function() {
-                            return this.y > 1000000000000 ? "<b>" + this.point.d + "<b><br>Hashrate&nbsp;" + (this.y / 1000000000000).toFixed(2) + "&nbsp;TH/s</b>" : this.y > 1000000000 ? "<b>" + this.point.d + "<b><br>Hashrate&nbsp;" + (this.y / 1000000000).toFixed(2) + "&nbsp;GH/s</b>" : this.y > 1000000 ? "<b>" + this.point.d + "<b><br>Hashrate&nbsp;" + (this.y / 1000000).toFixed(2) + "&nbsp;MH/s</b>" : "<b>" + this.point.d + "<b><br>Hashrate<b>&nbsp;" + this.y.toFixed(2) + "&nbsp;H/s</b>";
-                        },
+                    tooltip:
+                    {
+                    shared: true,
+                    crosshairs: true,
+                    formatter: function()
+                    {
+                    var s = ''+Highcharts.dateFormat('%a, %Y-%m-%d %H:%M', this.x)+'';
+                    $.each(this.points, function(i, point)
+                    {
+                    s += '
+                    '+ point.series.name +': '+point.y;
+                    });
+                    return s;
+                    }
+                    },
                         useHTML: true
                     },
                     exporting: {
