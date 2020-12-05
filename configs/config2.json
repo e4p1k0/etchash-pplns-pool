@@ -5,7 +5,7 @@
   "pplns": 9000,
   "proxy": {
     "enabled": true,
-    "listen": "0.0.0.0:8888",
+    "listen": "0.0.0.0:8882",
     "limitHeadersSize": 1024,
     "limitBodySize": 256,
     "behindReverseProxy": false,
