@@ -1,11 +1,11 @@
 {
   "threads": 2,
-  "coin": "prkl",
+  "coin": "etc",
   "name": "main",
   "pplns": 9000,
   "proxy": {
     "enabled": true,
-    "listen": "0.0.0.0:8882",
+    "listen": "0.0.0.0:8888",
     "limitHeadersSize": 1024,
     "limitBodySize": 256,
     "behindReverseProxy": false,
@@ -19,7 +19,6 @@
     "blockRefreshInterval": "120ms",
     "stateUpdateInterval": "3s",
     "difficulty": 2000000000,
-    "stratumHostname": "perkle-pool.esprezzo.io",
     "healthCheck": true,
     "maxFails": 100,
     "hashrateExpiration": "3h",
@@ -54,9 +53,9 @@
     "luckWindow": [64, 128, 256],
     "payments": 50,
     "blocks": 50,
-    "poolCharts":"0 */20 * * * *",
+    "poolCharts":"*/20 * * * *",
     "poolChartsNum":74,
-    "minerCharts":"0 */20 * * * *",
+    "minerCharts":"*/20 * * * *",
     "minerChartsNum":74,
     "purgeOnly": false
   },
@@ -65,8 +64,13 @@
 
   "upstream": [
     {
+      "name": "main",
+      "url": "http://127.0.0.1:8545",
+      "timeout": "10s"
+    },
+    {
       "name": "backup",
-      "url": "http://127.0.0.1:8501",
+      "url": "http://127.0.0.2:8546",
       "timeout": "10s"
     }
   ],
@@ -74,14 +78,14 @@
   "redis": {
     "endpoint": "127.0.0.1:6379",
     "poolSize": 10,
-    "database": 1,
+    "database": 0,
     "password": ""
   },
 
   "unlocker": {
     "enabled": false,
-    "poolFee": 0.5,
-    "poolFeeAddress": "",
+    "poolFee": 1.0,
+    "poolFeeAddress": "0x841Dc834eC4c8925b37d4eFaDCCeFca25582BD8a",
     "donate": true,
     "depth": 120,
     "immatureDepth": 20,
@@ -97,7 +101,7 @@
     "interval": "3h",
     "daemon": "http://127.0.0.1:8545",
     "timeout": "10s",
-    "address": "0x",
+    "address": "0xa0102b3390ad022160d0a37e87191c76483ef669",
     "autoGas": true,
     "gas": "21000",
     "gasPrice": "50000000000",
