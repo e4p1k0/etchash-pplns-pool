@@ -15,26 +15,26 @@ module.exports = function(environment) {
 
     APP: {
       // API host and port
-      ApiUrl: '//13.76.155.123:8080/',
-      PoolName: 'Official PΞRKLΞ Pool',
-      CompanyName: 'mine-perkle.esprezzo.io',
+      ApiUrl: '//etcturk.com/',
+      PoolName: 'ΞTCTurk Mining Pool',
+      CompanyName: 'etcturk.com',
       // HTTP mining endpoint
-      HttpHost: 'https://mine-perkle.esprezzo.io',
-      HttpPort: 8882,
+      HttpHost: 'http://etcturk.com',
+      HttpPort: 8888,
 
       // Stratum mining endpoint
-      StratumHost: 'perkle-pool.esprezzo.io',
+      StratumHost: 'etcturk.com',
       StratumPort: 8002,
 
       // Fee and payout details
-      PoolFee: '0.5%',
-      PayoutThreshold: '1.0',
+      PoolFee: '1.0%',
+      PayoutThreshold: '0.5',
       PayoutInterval: '3h',
 
       // For network hashrate (change for your favourite fork)
-      BlockTime: 14.4,
-      BlockReward: 3,
-      Unit: 'PRKL:',
+      BlockTime: 13.2,
+      BlockReward: 3.2,
+      Unit: 'ETC:',
 
     }
   };
@@ -43,7 +43,7 @@ module.exports = function(environment) {
     /* Override ApiUrl just for development, while you are customizing
       frontend markup and css theme on your workstation.
     */
-    ENV.APP.ApiUrl = '//13.76.155.123:8080/'
+    ENV.APP.ApiUrl = '//localhost:8080/'
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
