@@ -61,17 +61,17 @@
         <li><code><em>ETC</em></code>kazarken -coin etc parametresini mutlaka kullanın. Aksi halde<code><em>stale/rejected/incorrect</em></code> hataları ile karşılaşırsınız</li>
       </ul>
 
-      <h4>Ethminer Examples</h4>
+      <h4>LolMiner</h4>
       <p>
-        <strong>Download Ethminer (AMD/NVIDIA)</strong>: <a href="https://github.com/ethereum-mining/ethminer/releasesi/latest">Ethminer source/binary at Github</a>
+        <strong>Lolminer (AMD/NVIDIA)</strong>: <a href="https://bitcointalk.org/index.php?topic=4724735.0">İndirme ve Açıklama</a>
       </p>
-      <h5>Stratum method</h5>
+      <h5>Diğer Ayarlar</h5>
       <p>
-        <code>ethminer -SP 1 <em>-U</em> -S <em>{{config.StratumHost}}</em>:<em>{{config.StratumPort}}</em> -O <em>0x0000000000000000000000000000000000000000</em>.<em>your-worker-1</em> <em>--farm-recheck 2000</em></code>
+        <code>Diğer ayar ve konfigürasyonlar için Telegram destek gurubumuzu ziyaret edebilirsiniz.</code>
       </p>
       <ul>
-        <li><code>-SP 1</code> - option for Stratum server</li>
-        <li><code><em>-U</em></code> - NVIDIA GPU or <code><em>-G</em></code> for AMD GPU</li>
+        <li><code>Bios Mod</code> - Overclock/Undervolt Düzeni</li>
+        <li><code><em>Kart Seçimi</em></code> AMD- NVIDIA GPU<code><em>RX570/580/5700</em></code> nVidia 1060/1070/2060/2070 v.b</li>
         <li><code>-S <em>{{config.StratumHost}}</em>:<em>{{config.StratumPort}}</em></code> - stratum_server_name:stratum_port_number</li>
         <li><code>-O <em>0x0000000000000000000000000000000000000000</em>.<em>your-worker-1</em></code> - your_wallet_address.your_worker_name</li>
         <li><code><em>--farm-recheck 2000</em></code> - Leave 2000 ms between checks for changed work (default 500ms. use higher value to use stratum for stability)</li>
