@@ -54,7 +54,7 @@
     <div class="row">
       <div class="col-md-4 col-sm-12">
         <h5 class="note note-info text-center">
-          <span class="label label-success">2b</span>&nbsp;<a href="./#/help" title={{t "home.settings.help"}}><b>{{t "home.settings.title" hashes="< 150"}}</b></a>
+          <span class="label label-success">2G</span>&nbsp;<a href="./#/help" title={{t "home.settings.help"}}><b>{{t "home.settings.title" hashes="< 150"}}</b></a>
           <br>
           {{t "home.settings.difficulty" diff="2"}}
 
@@ -66,7 +66,7 @@
       </div>
       <div class="col-md-4 col-sm-12">
         <h5 class="note note-info text-center">
-          <span class="label label-success">4b</span>&nbsp;<a href="./#/help" title={{t "home.settings.help"}}><b>{{t "home.settings.title" hashes="150 - 800"}}</b></a>
+          <span class="label label-success">4G</span>&nbsp;<a href="./#/help" title={{t "home.settings.help"}}><b>{{t "home.settings.title" hashes="150 - 800"}}</b></a>
           <br>
           {{t "home.settings.difficulty" diff="4"}}
           <br><br>
@@ -78,13 +78,13 @@
       </div>
       <div class="col-md-4 col-sm-12">
         <h5 class="note note-info text-center">
-          <span class="label label-success">9b</span>&nbsp;<a href="./#/help" title={{t "home.settings.help"}}><b>{{t "home.settings.title" hashes="> 800"}} & NiceHash</b></a>
+          <span class="label label-success">8G</span>&nbsp;<a href="./#/help" title={{t "home.settings.help"}}><b>{{t "home.settings.title" hashes="> 800"}}</b></a>
           <br>
-          {{t "home.settings.difficulty" diff="9"}}
+          {{t "home.settings.difficulty" diff="8"}}
           <br><br>
           <b>{{t "home.settings.stratum_mining"}}:</b>
           <br><br>
-          <code>stratum+tcp://{{config.StratumHost}}:8009</code>
+          <code>stratum+tcp://{{config.StratumHost}}:8008</code>
         </h5>
       </div>
     </div>
@@ -104,13 +104,13 @@
               <div class="panel-heading" role="tab" id="win_headingOne">
                 <h4 class="panel-title">
                   <a role="button" data-toggle="collapse" data-parent="#windows_settings_windows_tab" href="#win_collapseOne" aria-expanded="true" aria-controls="win_collapseOne">
-                    Claymore
+                    Phoenix
                   </a>
                 </h4>
               </div>
               <div id="win_collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                      <input type="text" class="form-control" value="EthDcrMiner64.exe -epool stratum+tcp://perkle-pool.esprezzo.io:8002 -esm 0 -ewal &lt;address&gt; -eworker &lt;worker&gt; -allcoins 1 -allpools 1">
+                      <input type="text" class="form-control" value="PhoenixMiner.exe -pool stratum+tcp://etcturk.com:8008 -wal &lt;address&gt; -worker &lt;worker&gt; -coin etc">
                 </div>
               </div>
             </div>
@@ -118,13 +118,13 @@
               <div class="panel-heading" role="tab" id="win_headingTwo">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#windows_settings_windows_tab" href="#win_collapseTwo" aria-expanded="false" aria-controls="win_collapseTwo">
-                    Ethminer 0.14
+                    Gminer
                   </a>
                 </h4>
               </div>
               <div id="win_collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
-                      <input type="text" class="form-control" value="ethminer.exe -U -SP 1 -S perkle-pool.esprezzo.io:8004 -O &lt;address&gt;.&lt;worker&gt; --farm-recheck 1000 -v 2">
+                      <input type="text" class="form-control" value="miner.exe --server etcturk.com:8008 --user &lt;address&gt;.&lt;worker&gt;">
                 </div>
               </div>
             </div>
@@ -139,13 +139,13 @@
               <div class="panel-heading" role="tab" id="smos_headingOne">
                 <h4 class="panel-title">
                   <a role="button" data-toggle="collapse" data-parent="#smos_settings_smos_tab" href="#smos_collapseOne" aria-expanded="true" aria-controls="smos_collapseOne">
-                    Claymore
+                    Phoenix
                   </a>
                 </h4>
               </div>
               <div id="smos_collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                      <input type="text" class="form-control" value="-wd 1 -r 1 -epool stratum+tcp://perkle-pool.esprezzo.io:8002 -ewal &lt;address&gt; -eworker $rigName -esm 0 -epsw x -allpools 1 -asm 1 -mode 1">
+                      <input type="text" class="form-control" value="-wd 1 -r 1 -pool stratum+tcp://etcturk.com:8008 -wal &lt;address&gt; -worker $rigName -epsw x -coin etc -mode 1">
                 </div>
               </div>
             </div>
@@ -159,7 +159,7 @@
               </div>
               <div id="smos_collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
-                      <input type="text" class="form-control" value="-U -P stratum1+tcp://&lt;address&gt;.$rigName@perkle-pool.esprezzo.io:8002 --farm-recheck 200 --api-port -3333">
+                      <input type="text" class="form-control" value="-U -P stratum1+tcp://&lt;address&gt;.$rigName@etcturk.com:8008 --farm-recheck 200 --api-port -3333">
                 </div>
               </div>
             </div>
