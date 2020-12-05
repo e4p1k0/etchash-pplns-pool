@@ -17,10 +17,10 @@ function selectLocale(selected) {
   }
   if (supported.indexOf(locale) >= 0) {
     if (locale === 'en') {
-      locale = 'en-us';
+      locale = 'tr-tr';
     }
   } else {
-    locale = 'en-us';
+    locale = 'tr-tr';
   }
   return locale;
 }
