@@ -10,10 +10,10 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 )
 
-var ecip1099FBlock uint64 = 11700000 // classic mainnet
-// var ecip1099FBlock uint64 = 2520000 // mordor
+var ecip1099FBlockClassic uint64 = 11700000 // classic mainnet
+var ecip1099FBlockMordor uint64 = 2520000   // mordor
 
-var hasher = etchash.New(&ecip1099FBlock)
+var hasher *etchash.Etchash = nil
 
 func (s *ProxyServer) processShare(login, id, ip string, t *BlockTemplate, params []string) (bool, bool) {
 	// Now, the function received some work with login id and worker name and all information, ready to be processed
