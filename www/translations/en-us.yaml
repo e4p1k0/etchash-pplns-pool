@@ -1,158 +1,158 @@
 general:
   direction: ltr
 calculator:
-  title: How much are you gonna earn?
-  close: Close the door behind
+  title: Ne kadar kazanırsınız?
+  close: Kapat
 menu:
-  home: Home
-  help: Help
-  pool_blocks: Blocks
-  calculator: Calculator
-  payments: Payments
-  miners: Miners
-  about: About
+  home: Anasayfa
+  help: Yardım
+  pool_blocks: Havuz Blokları
+  calculator: Hesaplama
+  payments: Ödemeler
+  miners: Madenciler
+  about: Hakkımızda
   i18n:
-    about: about
-    help: help
-  language: language
+    about: hakkımızda
+    help: yardım
+  language: dil
 
 lang:
-  english: English
+  english: Türkçe
 
 home:
-  min_payout_threshold: Min. payout threshold
-  payouts_run: every {interval}.
-  payout_scheme_detail: Real time PPLNS payout scheme.
-  miners_online: Miners Online
-  pool_hashrate: Pool Hash Rate
-  pool_fee: Pool Fee
-  last_block_found: Last Block Found
-  network_difficulty: Network Difficulty
-  network_hashrate: Network Hash Rate
-  blockchain_height: Blockchain Height
-  current_round_variance: Current Round Variance
-  query_history: Your Stats and Payment History
+  min_payout_threshold: Min. Ödeme Tutarı
+  payouts_run: Her {interval}.
+  payout_scheme_detail: Gerçek Zamanlı PPLNS Ödeme.
+  miners_online: Bağlı Madenci
+  pool_hashrate: Havuz Hash Gücü
+  pool_fee: Komisyon
+  last_block_found: Son Blok Bulma
+  network_difficulty: Ağ Zorluğu
+  network_hashrate: Ağ Hash Gücü
+  blockchain_height: Blokzincir No
+  current_round_variance: Geçerli Şans
+  query_history: İstatistik ve Ödeme Geçmişiniz
   input:
-    enter_your_wallet_address: Enter Your Wallet Address
+    enter_your_wallet_address: Cüzdan Adresinizi Girin
   button:
-    lookup: Lookup
+    lookup: Gözat
   help:
-    minimal: help-minimal
+    minimal: mini-yardım
   settings:
-    difficulty: (difficulty {diff} billion)
-    help: CLICK FOR HELP
-    title: WORKER {hashes} MH/s
+    difficulty: (Zorluk {diff} Hash)
+    help: Yardım İçin Tıkla
+    title: Rig {hashes} MH/s
     stratum_mining: Stratum Mining
     commands:
       windows: Windows
       smos: SimpleMining
-      windows_instruction: Add this to your bat file
-      smos_instruction: Add this into your new Rig Group
+      windows_instruction: Bat dosyanıza bu şekilde ekleme yapın
+      smos_instruction: Rig Group kısmına bu şekilde ekleme yapın
 
 account:
   immature:
-    balance: Immature Balance
-    description: Preliminary balance awaiting blocks to mature.
+    balance: Olgunlaşmamış Kazanç
+    description: Olgunlaşmadan sonra hesabınıza yansır.
   pending:
-    balance: Pending Balance
-    description: Credited coins awaiting payout.
-  current: Current Payment
-  last_share_submitted: Last Share Submitted
-  online: Workers Online
-  hashrate: Hashrate
+    balance: Bekleyen Kazanç
+    description: Ödemeye hazır kazancınız.
+  current: Geçerli Ödeme
+  last_share_submitted: Son Pay Gönderimi
+  online: Bağlı Rig
+  hashrate: Hashgücü
   earnings:
-    miner: Earnings per day (3h avg)
-    worker: Earnings / day (short avg)
+    miner: Günlük Kazanç (3Sa Ort)
+    worker: Kazanç / Gün (Kısa Ort)
   blocks:
-    found: Blocks Found
+    found: Bulunan Blok
   total:
-    payments: Total Payments
-    paid: Total Paid
-  round_share: Your Round Share
-  round_share_description: Percent of your contribution to current round.
-  epoch_switch: Epoch Switch
-  workers: Workers
-  payouts: Payouts
+    payments: Toplam Ödeme
+    paid: Toplam Ödenen
+  round_share: Payınız
+  round_share_description: Geçerli İşteki Payınız.
+  epoch_switch: Epoch Değişimi
+  workers: Rigler
+  payouts: Ödemeler
 
-  your_workers: Workers
-  server: Server
-  difficulty: Difficulty
-  last_share: Last Seen
-  short_average: rough, short average
-  short_average_abbrv: 30m
-  long_average: accurate, long average
-  long_average_abbrv: 3h
-  no_workers_online: No workers online
-  notice: Notice
-  notice_html: Your average hashrate will be smoothly adjusted until you have shares to fullfill estimation window.<br/>There are two windows, long and short, first is equal to about 30 minutes and long window is usually equal to 3 hours.<br/>Dead (sick) workers will be highlighted in a table of workers if they didn't submit a share for 1/2 of short window, so you can perform maintenance of your rigs.
-  json_api_url: Your bulk stats JSON API URL
+  your_workers: Rigler
+  server: Sunucu
+  difficulty: Zorluk
+  last_share: Son Görülme
+  short_average: kısa ortalama
+  short_average_abbrv: 30dk
+  long_average: uzun ortalama
+  long_average_abbrv: 3sa
+  no_workers_online: Bağlı rig yok
+  notice: Not
+  notice_html: Ortalama hash gücünüz paylaşım gönderdikçe gerçek değerine ulaşacaktır.<br/>Sekmelerden kısa ortalama 30 dakikayı,uzun ortalama 3 saati ifade eder.<br/>Problem (offline) olan yada 15dk pay göndermeyen rigler işaretlenir ve bu şekilde riglerinizi kontrol edebilirsiniz.
+  json_api_url: JSON API Kısayolunuz
 
 payout:
-  latest_payouts: Your Latest Payouts
-  time: Time
+  latest_payouts: Son Ödemeleriniz
+  time: Zaman
   txid: Tx ID
-  amount: Amount
-  no_payouts_yet: No payouts yet
+  amount: Tutar
+  no_payouts_yet: Henüz Ödeme Yok
 
 block:
-  pool_rewards: This pool always pays the full block reward including TX fees and uncle rewards.
+  pool_rewards: Bu havuz yarım blok ve Tx ücretleri dahil tüm blok ödüllerini öder.
   pool_notice:
-    html: Block maturity requires <em style="text-decoration:underline">up to</em> <span class="label label-success">{success}</span> blocks. Usually it's less indeed.
-  blocks: Blocks
-  immature: Immature
-  new: New Blocks
-  orphan: Orphan
-  no_matured_blocks_yet: No matured blocks yet
-  reward: Reward
-  height: Height
+    html: Blok olgunlaşması için <em style="text-decoration:underline">yaklaşık</em> <span class="label label-success">{success}</span> blok gerekir. Genellikle daha kısa sürer.
+  blocks: Bloklar
+  immature: Olgunlaşmamış
+  new: Yeni Bloklar
+  orphan: Geçersiz
+  no_matured_blocks_yet: Henüz Olgunlaşmış Blok Yok
+  reward: Ödül
+  height: Numara
   hash: Hash
-  time_found: Time Found
-  variance: Share Variance (Shares/Diff)
-  matured: Matured Blocks
-  immature_blocks: Immature Blocks
-  no_immature_blocks_yet: No immature blocks yet
-  no_new_blocks_yet: No new blocks yet
-  recently_found_blocks: Recently Found Blocks
+  time_found: Bulunma Zamanı
+  variance: Paylaşım (Pay/Diff)
+  matured: Olgunlaşmış Bloklar
+  immature_blocks: Olgunlaşmamış Bloklar
+  no_immature_blocks_yet: Henüz Olgunlaşmamış Blok Yok
+  no_new_blocks_yet: Henüz Yeni Blok Yok
+  recently_found_blocks: Son Bulunan Bloklar
 
 luck:
-  blocks: Blocks
-  shares_diff: Shares/Diff
-  uncle_rate: Uncle Rate
-  orphan_rate: Orphan Rate
+  blocks: Bloklar
+  shares_diff: Pay/Diff
+  uncle_rate: Yarım Oran
+  orphan_rate: Geçersiz Oran
 
 payments:
-  pay_tx: This pool pays transaction fees from it's own pocket!
-  total_payments_sent: Total payments sent
-  latest_payouts: Latest Payouts
-  time: Time
-  amount: Amount
-  address: Address
+  pay_tx: Gönderim ücretleri havuz tarafından karşılanır!
+  total_payments_sent: Toplam Gönderilen Ödeme
+  latest_payouts: Son Ödemeler
+  time: Zaman
+  amount: Tutar
+  address: Adres
   txid: Tx ID
-  no_payouts_yet: No payouts yet
+  no_payouts_yet: Henüz Ödeme Yok
 
 miners:
-  total_hashrate: Total pool hashrate
-  total_miners: Total miners
-  login: Login
-  hashrate: Hashrate
-  last_beat: Last beat
-  no_miners: No miners
-  miners: Miners
+  total_hashrate: Havuz Toplam Hashgücü
+  total_miners: Toplam Madenci
+  login: Cüzdan
+  hashrate: Hashgücü
+  last_beat: Son Görülme
+  no_miners: Madenci Yok
+  miners: Madenciler
 
 wallet:
-  dapp_html: <a href="https://ethereum.org/">https://ethereum.org/</a>
-  online_html: <a href="https://www.myetherwallet.com/">https://www.myetherwallet.com</a> Online wallet at myetherwallet.com
+  dapp_html: <a href="https://www.coinomi.com/en/">Coinomi</a>
+  online_html: <a href="https://www.ledger.com/">https://www.ledger.com/</a> Ledger Wallet
 
 errors:
-  header: Stats API Temporarily Down
-  message: Usually it's just a temporal issue and mining is not affected.
+  header: İstatistik API Çevrimdışı
+  message: Genellikle geçici bir durum olup madencilik bundan etkilenmez.
 
 links:
-  blockExplorerLink: 'http://perk-explorer.galaxypool.org:3000'
-  blockExplorerLink_tx: 'http://perk-explorer.galaxypool.org:3000/tx/'
-  blockExplorerLink_uncle: 'http://perk-explorer.galaxypool.org:3000/uncle'
-  blockExplorerLink_block: 'http://perk-explorer.galaxypool.org:3000/block/'
-  blockExplorerLink_address: 'http://perk-explorer.galaxypool.org:3000/addr/'
+  blockExplorerLink: 'https://expedition.dev'
+  blockExplorerLink_tx: 'https://expedition.dev/tx/'
+  blockExplorerLink_uncle: 'https://expedition.dev/uncle'
+  blockExplorerLink_block: 'https://expedition.dev/block/'
+  blockExplorerLink_address: 'https://expedition.dev/address/'
 
 footer:
-  copyrights: '&copy; Brought to you by <a href="" target="_blank"><i class="fa fa-discord" style="color:#0088cc"></i> Esprezzo.io</a>'
+  copyrights: '&copy; Destek <a href="" target="_blank"><i class="fa fa-discord" style="color:#0088cc"></i> Etcturk</a>'
