@@ -11,9 +11,9 @@ import (
 )
 
 var ecip1099FBlockClassic uint64 = 11700000 // classic mainnet
-var ecip1099FBlockMordor uint64 = 2520000   // mordor
+// var ecip1099FBlockMordor uint64 = 2520000   // mordor
 
-var hasher *etchash.Etchash = nil
+var hasher = etchash.New(&ecip1099FBlockClassic, nil)
 
 func (s *ProxyServer) processShare(login, id, ip string, t *BlockTemplate, params []string) (bool, bool) {
 	// Now, the function received some work with login id and worker name and all information, ready to be processed
