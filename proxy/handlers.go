@@ -22,8 +22,7 @@ func (s *ProxyServer) handleLoginRPC(cs *Session, params []string, id string) (b
 		return false, &ErrorReply{Code: -1, Message: "Invalid params"}
 	}
 
-	// login := strings.ToLower(params[0])
-	login := params[0]
+	login := strings.ToLower(params[0])
 	if strings.Contains(login, ".") {
 		longString := strings.Split(login, ".")
                 loginCheck = longString[0]
