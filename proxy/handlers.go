@@ -4,7 +4,7 @@ import (
 	"log"
 	"regexp"
 	"strings"
-	"errors"
+	//"errors"
 
 	"github.com/etclabscore/open-etc-pool/rpc"
 	"github.com/etclabscore/open-etc-pool/util"
@@ -47,7 +47,7 @@ func (s *ProxyServer) handleGetWorkRPC(cs *Session) ([]string, *ErrorReply) {
 	if t == nil || len(t.Header) == 0 || s.isSick() {
 		return nil, &ErrorReply{Code: 0, Message: "Work not ready"}
 	}
-	return []string{t.Header, t.Seed, s.diff}, nil
+		return []string{t.Header, t.Seed, s.diff, util.ToHex(int64(t.Height))}, nil
 }
 
 // Stratum
@@ -68,7 +68,7 @@ func (s *ProxyServer) handleSubmitRPC(cs *Session, login, id string, params []st
 		id = longString[1]
 		login = longString[0]
     }
-	
+
 	if !workerPattern.MatchString(id){
 		id = "default"
 	}
@@ -78,13 +78,22 @@ func (s *ProxyServer) handleSubmitRPC(cs *Session, login, id string, params []st
 		return false, &ErrorReply{Code: -1, Message: "Invalid params"}
 	}
 
+    stratumMode := cs.stratumMode()
+	if stratumMode != EthProxy {
+		for i := 0; i <= 2; i++ {
+			if params[i][0:2] != "0x" {
+				params[i] = "0x" + params[i]
+			}
+		}
+	}
+
 	if !noncePattern.MatchString(params[0]) || !hashPattern.MatchString(params[1]) || !hashPattern.MatchString(params[2]) {
 		s.policy.ApplyMalformedPolicy(cs.ip)
 		log.Printf("Malformed PoW result from %s@%s %v", login, cs.ip, params)
 		return false, &ErrorReply{Code: -1, Message: "Malformed PoW result"}
 	}
 
-	go func(s *ProxyServer, cs *Session, login, id string, params []string) {
+	//go func(s *ProxyServer, cs *Session, login, id string, params []string) {
 		t := s.currentBlockTemplate()
 
 		//MFO: 	This function (s.processShare) will process a share as per hasher.Verify function of github.com/ethereum/ethash
@@ -94,34 +103,42 @@ func (s *ProxyServer) handleSubmitRPC(cs *Session, login, id string, params []st
 		//		false,false		(stale/invalid)which means share is new, and it is not a block, might be a stale share or invalidShare
 		//		false,true		(valid)which means share is new, and it is a block or accepted share
 		//	When this function finishes, the results is already recorded in the db for valid shares or blocks.
-		exist, validShare := s.processShare(login, id, cs.ip, t, params)
+		exist, validShare := s.processShare(login, id, cs.ip, t, params, stratumMode != EthProxy)
 		ok := s.policy.ApplySharePolicy(cs.ip, !exist && validShare)
 
 
 		// if true,true or true,false
 		if exist {
 			log.Printf("Duplicate share from %s@%s %v", login, cs.ip, params)
-			cs.lastErr = errors.New("Duplicate share")
+			//cs.lastErr = errors.New("Duplicate share")
+			return false, &ErrorReply{Code: 23, Message: "Invalid share"}
 		}
 
 		// if false, false
 		if !validShare {
 			//MFO: Here we have an invalid share
-			log.Printf("Invalid share from %s@%s", login, cs.ip)
+			log.Printf("Invalid share from %s@%s", login, cs.ip, params)
 			// Bad shares limit reached, return error and close
 			if !ok {
-				cs.lastErr = errors.New("Invalid share")
+				return false, &ErrorReply{Code: 23, Message: "Invalid share"}
+				//cs.lastErr = errors.New("Invalid share")
 			}
+			return false, nil
+			//return false, &ErrorReply{Code: -1, Message: "Invalid share"}
 		}
-		//MFO: Here we have a valid share and it is already recorded in DB by miner.go
-		// if false, true
-		log.Printf("Valid share from %s@%s", login, cs.ip)
+
+		if s.config.Proxy.Debug {
+			//MFO: Here we have a valid share and it is already recorded in DB by miner.go
+			// if false, true
+			log.Printf("Valid share from %s@%s", login, cs.ip)
+		}
 
 		if !ok {
-			cs.lastErr = errors.New("High rate of invalid shares")
+			log.Printf("High rate of invalid shares from %s@%s", login, cs.ip)
+			//cs.lastErr = errors.New("High rate of invalid shares")
 		}
-	}(s, cs, login, id, params)
-
+	//}(s, cs, login, id, params)
+	//log.Printf("TEST", cs.lastErr)
 	return true, nil
 }
 

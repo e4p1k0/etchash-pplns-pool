@@ -26,6 +26,7 @@
     "healthCheck": true,
     "maxFails": 100,
     "hashrateExpiration": "3h",
+    "debug": true,
     "policy": {
       "workers": 8,
       "resetInterval": "60m",
