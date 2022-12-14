@@ -4,7 +4,7 @@ import (
 	"log"
 	"regexp"
 	"strings"
-	//"errors"
+	"errors"
 
 	"github.com/etclabscore/open-etc-pool/rpc"
 	"github.com/etclabscore/open-etc-pool/util"
@@ -93,7 +93,7 @@ func (s *ProxyServer) handleSubmitRPC(cs *Session, login, id string, params []st
 		return false, &ErrorReply{Code: -1, Message: "Malformed PoW result"}
 	}
 
-	//go func(s *ProxyServer, cs *Session, login, id string, params []string) {
+	go func(s *ProxyServer, cs *Session, login, id string, params []string) {
 		t := s.currentBlockTemplate()
 
 		//MFO: 	This function (s.processShare) will process a share as per hasher.Verify function of github.com/ethereum/ethash
@@ -110,35 +110,30 @@ func (s *ProxyServer) handleSubmitRPC(cs *Session, login, id string, params []st
 		// if true,true or true,false
 		if exist {
 			log.Printf("Duplicate share from %s@%s %v", login, cs.ip, params)
-			//cs.lastErr = errors.New("Duplicate share")
-			return false, &ErrorReply{Code: 23, Message: "Invalid share"}
+			cs.lastErr = errors.New("Duplicate share")
 		}
 
 		// if false, false
 		if !validShare {
 			//MFO: Here we have an invalid share
-			log.Printf("Invalid share from %s@%s", login, cs.ip, params)
+			log.Printf("Invalid share from %s@%s", login, cs.ip)
 			// Bad shares limit reached, return error and close
 			if !ok {
-				return false, &ErrorReply{Code: 23, Message: "Invalid share"}
-				//cs.lastErr = errors.New("Invalid share")
+				cs.lastErr = errors.New("Invalid share")
 			}
-			return false, nil
-			//return false, &ErrorReply{Code: -1, Message: "Invalid share"}
 		}
 
 		if s.config.Proxy.Debug {
 			//MFO: Here we have a valid share and it is already recorded in DB by miner.go
 			// if false, true
-			log.Printf("Valid share from %s@%s", login, cs.ip)
+			log.Printf("Valid share from %s@%s", login, cs.ip, params)
 		}
 
 		if !ok {
-			log.Printf("High rate of invalid shares from %s@%s", login, cs.ip)
-			//cs.lastErr = errors.New("High rate of invalid shares")
+			cs.lastErr = errors.New("High rate of invalid shares")
 		}
-	//}(s, cs, login, id, params)
-	//log.Printf("TEST", cs.lastErr)
+	}(s, cs, login, id, params)
+
 	return true, nil
 }
 

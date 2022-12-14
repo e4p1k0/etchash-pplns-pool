@@ -140,17 +140,8 @@ func (cs *Session) stratumMode() int {
 	return cs.stratum
 }
 
-func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error { // Handle RPC/Stratum methods
-
-	// just for debug
-	//var reqParams []string
-	//err2 := json.Unmarshal(req.Params, &reqParams)
-	//if err2 == nil{
-	//	log.Println("ReqMethod", req.Method, "req.id", req.Id, "Mode", cs.stratum)
-	//	// log.Println("ReqMethod", req.Method, "req.id", req.Id , "ExtraNonce", cs.Extranonce, "Mode", cs.stratum)
-	//	log.Println("ReqParams", reqParams)
-	//}
-
+func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error {
+	// Handle RPC/Stratum methods
 	switch req.Method {
 	case "eth_submitLogin":
 		var params []string
@@ -194,30 +185,7 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error { // 
 		cs.setStratumMode("EthereumStratum/1.0.0")
 		log.Println("Nicehash subscribe", cs.ip)
 		result := cs.getNotificationResponse(s)
-		//return cs.sendStratumResult(req.Id, result)
-		cs.sendStratumResult(req.Id, result)
-
-		if err := cs.sendStratumResult(req.Id, result); err != nil {
-			return err
-		}
-			//	cs.ExtranonceSub = true
-			//	req := JSONStratumReq{
-			//		Id:     nil,
-			//		Method: "mining.set_extranonce",
-			//		Params: []interface{}{
-			//			cs.Extranonce,
-			//		},
-			//	}
-			//	return cs.sendTCPReq(req)
-		cs.ExtranonceSub = true
-		req := JSONStratumReq{
-			Id:     nil,
-			Method: "mining.set_extranonce",
-			Params: []interface{}{
-				cs.Extranonce,
-			},
-		}
-		return cs.sendTCPReq(req)
+		return cs.sendStratumResult(req.Id, result)
 
 	case "mining.hello":
 		var params map[string]string
@@ -269,12 +237,7 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error { // 
 				return errors.New("invalid params")
 			}
 			splitData := strings.Split(params[0], ".")
-			//log.Println("splitData", splitData)
 			params[0] = splitData[0]
-			if len(splitData) == 1 {
-				log.Println("Miner without worker name connected. Set to default worker name")
-				splitData = append(splitData, "default_worker")
-			}
 			_, errReply := s.handleLoginRPC(cs, params, req.Worker)
 			if errReply != nil {
 				return cs.sendStratumError(req.Id, []string{
@@ -341,8 +304,7 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error { // 
 			}
 
 			return cs.sendStratumResult(req.Id, reply)
-		case "mining.hashrate":
-			return cs.sendTCPResult(req.Id, true)
+
 		default:
 			errReply := s.handleUnknownRPC(cs, req.Method)
 			return cs.sendStratumError(req.Id, []string{
@@ -385,7 +347,6 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error { // 
 			return cs.sendJob(s, req.Id, true)
 
 		case "mining.extranonce.subscribe":
-			//log.Println("Miner request mining.extranonce.subscribe", cs.ip) // just for debug
 			var params []string
 			if req.Params != nil {
 				err := json.Unmarshal(req.Params, &params)
@@ -462,7 +423,6 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error { // 
 			}
 
 			reply, errReply := s.handleTCPSubmitRPC(cs, id, params)
-			// log.Println("req.id", req.Id, "reply on handleTCPSubmitRPC", reply) // just for debug
 			if errReply != nil {
 				log.Println("mining.submit: handleTCPSubmitRPC failed")
 				return cs.sendStratumError(req.Id, []string{
@@ -472,8 +432,7 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error { // 
 			}
 
 			return cs.sendStratumResult(req.Id, reply)
-		case "eth_submitHashrate":
-			return cs.sendTCPResult(req.Id, true)
+
 		default:
 			errReply := s.handleUnknownRPC(cs, req.Method)
 			return cs.sendStratumError(req.Id, []string{
